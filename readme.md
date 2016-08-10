@@ -1,9 +1,15 @@
-# 配置编译任务
+# 在VSCode上配置typescript + nodejs 开发环境
 
-在VSCode中快捷键 `Ctrl+Shift+B`用来编译，对应的编译配置文件为`.vscode/task.json`
+## 确认需要的都安装好了
+
+![](./images/1.png)
+
+## 配置编译任务
+
+在VSCode中快捷键 `Ctrl + Shift + B`用来编译，对应的编译配置文件为`.vscode/task.json`
 
 第一次按会弹出 `No task runner configured` 。点击`configure task runner` 开始配置。
-选择`TypeScript with Watch Mode` 会在.vscode目录下自动创建`task.json`如下
+选择`TypeScript with Watch Mode` 会在`.vscode`目录下自动创建`task.json`如下
 
  ```
 {
@@ -19,7 +25,7 @@
 }
  ```
 
-有了这个`task.json`后每次`Ctrl+Shift+B`即可调用`tsc`命令编译`typescript`。
+有了这个`task.json`后每次`Ctrl + Shift + B` 即可调用`tsc`命令编译`typescript`。
 
 
 >task配置的官方文档
@@ -28,7 +34,7 @@
 
 `tsc`命令会查找当前目录的`tsconfig.json`配置来编译`typescript`
 
-## 创建tsconfig.json
+### 创建tsconfig.json
 
 `node`还不支持`es6`的`import`，所以还是先编译到`es5`
 
@@ -46,10 +52,11 @@
 >
 >https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
 
-# Debug配置
+## Debug配置
+
 `Ctrl + Shift + D` 点击配置图标，选择nodejs
 
-图2
+![](./images/2.png)
 
 会在.vscode目录下自动创建launch.json如下
 
@@ -117,7 +124,7 @@
 >
 > https://code.visualstudio.com/docs/editor/debugging
 
-# 语法提示
+## 语法提示
 
 命令
 
@@ -140,10 +147,11 @@
 
 现在全部配置完毕，可以开始用`typescript`写node了。
 
-# 创建app.ts
+## 创建app.ts
 
 ```
 import { createServer, Server, IncomingMessage, ServerResponse } from 'http';
+// 明确类型麻烦些，却会获得非常详细的语法提示
 
 const server: Server = createServer((req: IncomingMessage, res: ServerResponse) => {
     res.statusCode = 200;
@@ -158,3 +166,5 @@ server.listen(port, hostname, () => {
 })
 
 ```
+
+`Ctrl + Shift + B` 编译后就可以 `Ctrl + Shift + D`进入debug模式，点击`launch`运行程序了。
