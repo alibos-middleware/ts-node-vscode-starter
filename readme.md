@@ -167,4 +167,23 @@ server.listen(port, hostname, () => {
 
 ```
 
+也可以把所有函数import到http名下
+
+```
+import * as http from 'http';
+
+const server: http.Server = http.createServer((req: http.IncomingMessage, res: http.ServerResponse) => {
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "text/plain");
+    res.end("Hello World\n");
+})
+
+const hostname: string = "127.0.0.1";
+const port: number = 3000;
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+})
+
+```
+
 `Ctrl + Shift + B` 编译后就可以 `Ctrl + Shift + D`进入debug模式，点击`launch`运行程序了。
